@@ -74,7 +74,7 @@ function CreateTrip() {
     const docID = Date.now().toString()
     await setDoc(doc(db, "AItrips", docID), {
       userSelection: formData,
-      tripData: JASON.parse(Tripdata),
+      tripData: JSON.parse(Tripdata),
       userEmail: user?.email,
       id: docID
 
