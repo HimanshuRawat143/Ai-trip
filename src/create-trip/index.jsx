@@ -18,6 +18,7 @@ import axios from 'axios'
 import { db } from '@/service/FirebaseConfig'
 import { doc, setDoc } from "firebase/firestore";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -25,8 +26,8 @@ function CreateTrip() {
   const [formData, setFormData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
+  const navigate = useNavigate();
   const handleInputChange = (name, value) => {
-
     setFormData({
       ...formData,
       [name]: value
@@ -80,7 +81,10 @@ function CreateTrip() {
 
     });
     setLoading(false);
+    navigate('/view-trip/'+docId)
   }
+
+
   const GetUserProfile = (tokenInfo) => {
     axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenInfo?.access_token}`, {
       headers: {
